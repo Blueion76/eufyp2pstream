@@ -12,5 +12,8 @@ RUN apt-get update && \
     apt-get install -y jq && \
     pip install --no-cache-dir -r requirements.txt
 
-# Set the entry point for the add-on
+# Ensure run.sh is executable
+RUN chmod +x /app/run.sh
+RUN chmod +x /app/*.py
+# Set the entry point for the application
 ENTRYPOINT ["/app/run.sh"]
