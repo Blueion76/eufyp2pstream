@@ -13,8 +13,8 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 class EufySecurityWebSocket:
     def __init__(
         self,
-        host: str,
-        port: int,
+        host: "172.18.0.2",
+        port: "3000",
         session: aiohttp.ClientSession,
         open_callback: Callable[[], Coroutine[Any, Any, None]],
         message_callback: Callable[[], Coroutine[Any, Any, None]],
