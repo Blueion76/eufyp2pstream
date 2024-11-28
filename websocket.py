@@ -13,8 +13,8 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 class EufySecurityWebSocket:
     def __init__(
         self,
-        host: "172.18.0.2",
-        port: "3000",
+        host: 172.16.1.28,
+        port: int,
         session: aiohttp.ClientSession,
         open_callback: Callable[[], Coroutine[Any, Any, None]],
         message_callback: Callable[[], Coroutine[Any, Any, None]],
@@ -73,13 +73,11 @@ class EufySecurityWebSocket:
 
     def on_close(self, future="") -> None:
         print(f" - WebSocket Connection Closed. %s", future)
-        print(
-            f" - WebSocket Connection Closed. %s", self.close_callback
-        )
+        print(f" - WebSocket Connection Closed. %s", self.close_callback)
         if self.close_callback is not None:
             self.ws = None
             asyncio.run_coroutine_threadsafe(self.close_callback(), self.loop)
 
     async def send_message(self, message):
-        #print(f" - WebSocket message sent. %s", message)
+        # print(f" - WebSocket message sent. %s", message)
         await self.ws.send_str(message)
