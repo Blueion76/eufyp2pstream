@@ -21,7 +21,7 @@ class EufySecurityWebSocket:
         close_callback: Callable[[], Coroutine[Any, Any, None]],
         error_callback: Callable[[Text], Coroutine[Any, Any, None]],
     ):
-        self.host = host
+        self.host = "172.16.1.28"
         self.port = port
         self.session = session
         self.open_callback = open_callback
